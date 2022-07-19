@@ -8,7 +8,7 @@ export const Category = sequelize.define('Category', {
   quantity: { type: DataTypes.INTEGER, allowNull: false}
 })
 
-export interface Inventory {
+export interface IInventoryContract {
   id: string
   productId: string
   quantity: number

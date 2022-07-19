@@ -17,13 +17,13 @@ export const Product = sequelize.define('Product', {
   cannabinoidUnit: { type: DataTypes.STRING, allowNull: true, defaultValue: null }
 })
 
-export interface Cannabinoids {
+export interface ICannabinoids {
   thc: number
   cbd: number
   unit: string
 }
 
-export interface Product {
+export interface IProductContract {
   id: string
   name: string
   categoryId: string
@@ -33,6 +33,6 @@ export interface Product {
   salePrice?: number
   description?: string
   imageUrl?: string
-  cannabinoids?: Cannabinoids
+  cannabinoids?: ICannabinoids
 }
 
