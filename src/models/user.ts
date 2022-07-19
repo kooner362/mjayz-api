@@ -2,18 +2,11 @@ import { DataTypes } from "sequelize/types"
 import { sequelize } from "../utils/dbUtil"
 
 export const User = sequelize.define('User', {
-  id: { type: DataTypes.UUIDV4, allowNull: false },
+  id: { type: DataTypes.UUIDV4, allowNull: false, unique: 'id_email_indx' },
   name: { type: DataTypes.STRING, allowNull: false },
   isAdmin: { type: DataTypes.BOOLEAN, allowNull: false },
-  email: { type: DataTypes.STRING, allowNull: false },
-  birthday: { type: DataTypes.DATE, allowNull: false },
-  phoneNumber: { type: DataTypes.STRING, allowNull: false },
-  streetName: { type: DataTypes.STRING, allowNull: false },
-  streetNumber: { type: DataTypes.NUMBER, allowNull: false },
-  unitNumber: { type: DataTypes.STRING, allowNull: true },
-  postalCode: { type: DataTypes.STRING, allowNull: false },
-  provice: { type: DataTypes.STRING, allowNull: false },
-  country: { type: DataTypes.STRING, allowNull: false }
+  email: { type: DataTypes.STRING, allowNull: false, unique: 'id_email_indx' },
+  password: { type: DataTypes.STRING, allowNull: false },
 })
 
 export interface IUserContract {
@@ -21,12 +14,5 @@ export interface IUserContract {
   name: string
   isAdmin: boolean
   email: string
-  phoneNumber: string
-  address: {
-    street: string
-    number: number
-    postalCode: string
-    province: string
-    country: string
-  }  
+  password: string
 }
