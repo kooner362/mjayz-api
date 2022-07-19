@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize/types"
 import { sequelize } from "../utils/dbUtil"
+import { auditable, IAuditable } from "./auditable"
 import { Category } from "./category"
 
 export const Product = sequelize.define('Product', {
@@ -14,7 +15,8 @@ export const Product = sequelize.define('Product', {
   imageUrl: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
   thc: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
   cbd: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
-  cannabinoidUnit: { type: DataTypes.STRING, allowNull: true, defaultValue: null }
+  cannabinoidUnit: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
+  ...auditable
 })
 
 export interface ICannabinoids {
@@ -23,7 +25,7 @@ export interface ICannabinoids {
   unit: string
 }
 
-export interface IProductContract {
+export interface IProductContract extends IAuditable {
   id: string
   name: string
   categoryId: string

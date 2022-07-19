@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize/types"
 import { sequelize } from "../utils/dbUtil"
+import { auditable, IAuditable } from "./auditable"
 
 export const Customer = sequelize.define('Customer', {
   id: { type: DataTypes.UUIDV4, allowNull: false, unique: 'id_email_indx' },
@@ -13,10 +14,11 @@ export const Customer = sequelize.define('Customer', {
   postalCode: { type: DataTypes.STRING, allowNull: false },
   provice: { type: DataTypes.STRING, allowNull: false },
   country: { type: DataTypes.STRING, allowNull: false },
-  totalSpend: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 }
+  totalSpend: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
+  ...auditable
 })
 
-export interface IUserContract {
+export interface IUserContract extends IAuditable {
   id: string
   name: string
   email: string
